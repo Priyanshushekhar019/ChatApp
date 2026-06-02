@@ -6,6 +6,7 @@ import { Toaster } from 'react-hot-toast'
 import { useSelector, useDispatch } from 'react-redux'
 import io from 'socket.io-client'
 import { setSocket, setOnlineUsers } from './redux/socketSlice'
+import { BASE_URL } from './config'
 
 function App() {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
@@ -42,7 +43,7 @@ function App() {
   // Establish socket connection when user is authenticated
   useEffect(() => {
     if (authUser) {
-      const socketInstance = io("http://localhost:8080", {
+      const socketInstance = io(BASE_URL, {
         query: {
           userId: authUser._id
         }

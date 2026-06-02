@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { setMessages } from '../redux/messageSlice';
+import { BASE_URL } from '../config';
 
 const SendInput = () => {
     const [message, setMessage] = useState("");
@@ -16,7 +17,7 @@ const SendInput = () => {
         try {
             axios.defaults.withCredentials = true;
             const res = await axios.post(
-                `http://localhost:8080/api/v1/message/send/${selectedUser?._id}`,
+                `${BASE_URL}/api/v1/message/send/${selectedUser?._id}`,
                 { message },
                 {
                     headers: {

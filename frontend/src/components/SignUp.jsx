@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import { BASE_URL } from '../config';
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -29,7 +30,7 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:8080/api/v1/user/register', formData, {
+      const res = await axios.post(`${BASE_URL}/api/v1/user/register`, formData, {
         headers: {
           'Content-Type': 'application/json'
         },
