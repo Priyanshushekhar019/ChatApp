@@ -45,6 +45,8 @@ const SignUp = () => {
           confirmPassword: '',
           gender: ''
         });
+        // Redirect to Login page
+        window.history.pushState(null, '', '/login');
       }
     } catch (error) {
       toast.error(error.response?.data?.message || "Something went wrong");

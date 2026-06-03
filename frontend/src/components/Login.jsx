@@ -32,7 +32,7 @@ const Login = () => {
             if (res.data.success) {
                 toast.success(res.data.message);
                 console.log("Logged In User Data:", res.data);
-                dispatch(setAuthUser(res.data.user));
+                dispatch(setAuthUser(res.data));
                 setFormData({
                     username: '',
                     password: ''
