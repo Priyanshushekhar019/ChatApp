@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { setMessages } from '../redux/messageSlice';
+import { setOtherUsers } from '../redux/userSlice';
 import { BASE_URL } from '../config';
 
 const SendInput = () => {
     const [message, setMessage] = useState("");
     const dispatch = useDispatch();
-    const { selectedUser } = useSelector(store => store.user);
+    const { selectedUser, otherUsers } = useSelector(store => store.user);
     const { messages } = useSelector(store => store.message);
 
     const onSubmitHandler = async (e) => {
@@ -28,6 +29,12 @@ const SendInput = () => {
             
             if (res.data) {
                 dispatch(setMessages([...messages, res.data]));
+                
+                // Move selectedUser to the top of the sidebar list
+                if (otherUsers && selectedUser) {
+                    const updatedUsers = [selectedUser, ...otherUsers.filter(u => u._id !== selectedUser._id)];
+                    dispatch(setOtherUsers(updatedUsers));
+                }
             }
             setMessage("");
         } catch (error) {

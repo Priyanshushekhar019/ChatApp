@@ -24,7 +24,7 @@ const MessageContainer = () => {
                         <div className='w-12 rounded-full border border-zinc-700'>
                             <img 
                                 src={selectedUser?.profilePhoto?.includes('avatar.iran.liara.run') 
-                                    ? `https://ui-avatars.com/api/?name=${encodeURIComponent(selectedUser?.fullName || '')}&background=random&color=fff` 
+                                    ? `https://api.dicebear.com/9.x/avataaars/svg?seed=${encodeURIComponent(selectedUser?.fullName || '')}` 
                                     : selectedUser?.profilePhoto
                                 } 
                                 alt="user profile" 

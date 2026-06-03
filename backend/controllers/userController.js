@@ -20,8 +20,8 @@ export const register=async(req,res)=>{
         }
         const hashedPassword=await bcrypt.hash(password,10);
 
-        // Generate profile photo depending on name using a globally accessible initials service
-        const profilePhoto = `https://ui-avatars.com/api/?name=${encodeURIComponent(fullName)}&background=random&color=fff`;
+        // Generate profile photo depending on name using a globally accessible avatar service (DiceBear Avataaars)
+        const profilePhoto = `https://api.dicebear.com/9.x/avataaars/svg?seed=${encodeURIComponent(fullName)}`;
 
         await User.create({
             fullName,

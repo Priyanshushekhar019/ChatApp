@@ -18,7 +18,7 @@ const OtherUser = ({ user }) => {
                     <div className='w-12 rounded-full'>
                         <img 
                             src={user?.profilePhoto?.includes('avatar.iran.liara.run') 
-                                ? `https://ui-avatars.com/api/?name=${encodeURIComponent(user?.fullName || '')}&background=random&color=fff` 
+                                ? `https://api.dicebear.com/9.x/avataaars/svg?seed=${encodeURIComponent(user?.fullName || '')}` 
                                 : user?.profilePhoto
                             } 
                             alt="user profile" 
