@@ -42,7 +42,7 @@ const Sidebar = () => {
                     placeholder='Search...'
                 />
                 <button type='submit' className='btn btn-circle bg-zinc-500 text-white'>
-                    <BiSearchAlt2 className='m-6 h-6 outline-none' />
+                    <BiSearchAlt2 className='w-6 h-6 outline-none' />
                 </button>
             </form>
             <div className='divider px-3'> </div>
