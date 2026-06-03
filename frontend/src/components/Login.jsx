@@ -80,7 +80,14 @@ const Login = () => {
 
                 <p className="auth-footer">
                     Don't have an account?{' '}
-                    <a href="/signup" className="auth-link">
+                    <a 
+                        href="/signup" 
+                        onClick={(e) => {
+                            e.preventDefault();
+                            window.history.pushState(null, '', '/signup');
+                        }}
+                        className="auth-link"
+                    >
                         Signup
                     </a>
                 </p>
