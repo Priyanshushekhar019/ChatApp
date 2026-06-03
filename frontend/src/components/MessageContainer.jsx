@@ -22,7 +22,14 @@ const MessageContainer = () => {
                 <div className='flex gap-2 items-center bg-zinc-800 text-white px-4 py-3 mb-2'>
                     <div className={`avatar ${isOnline ? 'online' : ''}`}>
                         <div className='w-12 rounded-full border border-zinc-700'>
-                            <img src={selectedUser?.profilePhoto} alt="user profile" />
+                            <img 
+                                src={selectedUser?.profilePhoto} 
+                                alt="user profile" 
+                                onError={(e) => {
+                                    e.target.onerror = null;
+                                    e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(selectedUser?.fullName || '')}&background=random&color=fff`;
+                                }}
+                            />
                         </div>
                     </div>
                     <div className='flex flex-col flex-1'>
