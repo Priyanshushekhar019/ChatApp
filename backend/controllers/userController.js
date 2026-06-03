@@ -20,10 +20,8 @@ export const register=async(req,res)=>{
         }
         const hashedPassword=await bcrypt.hash(password,10);
 
-        // Generate profile photo depending on gender
-        const maleProfilePhoto = `https://avatar.iran.liara.run/public/boy?username=${username}`;
-        const femaleProfilePhoto = `https://avatar.iran.liara.run/public/girl?username=${username}`;
-        const profilePhoto = gender.toLowerCase() === "male" ? maleProfilePhoto : femaleProfilePhoto;
+        // Generate profile photo depending on name using a globally accessible initials service
+        const profilePhoto = `https://ui-avatars.com/api/?name=${encodeURIComponent(fullName)}&background=random&color=fff`;
 
         await User.create({
             fullName,

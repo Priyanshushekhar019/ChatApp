@@ -23,12 +23,11 @@ const MessageContainer = () => {
                     <div className={`avatar ${isOnline ? 'online' : ''}`}>
                         <div className='w-12 rounded-full border border-zinc-700'>
                             <img 
-                                src={selectedUser?.profilePhoto} 
+                                src={selectedUser?.profilePhoto?.includes('avatar.iran.liara.run') 
+                                    ? `https://ui-avatars.com/api/?name=${encodeURIComponent(selectedUser?.fullName || '')}&background=random&color=fff` 
+                                    : selectedUser?.profilePhoto
+                                } 
                                 alt="user profile" 
-                                onError={(e) => {
-                                    e.target.onerror = null;
-                                    e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(selectedUser?.fullName || '')}&background=random&color=fff`;
-                                }}
                             />
                         </div>
                     </div>

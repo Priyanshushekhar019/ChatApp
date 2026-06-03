@@ -17,12 +17,11 @@ const OtherUser = ({ user }) => {
                 <div className={`avatar ${isOnline ? 'online' : ''}`}>
                     <div className='w-12 rounded-full'>
                         <img 
-                            src={user?.profilePhoto} 
+                            src={user?.profilePhoto?.includes('avatar.iran.liara.run') 
+                                ? `https://ui-avatars.com/api/?name=${encodeURIComponent(user?.fullName || '')}&background=random&color=fff` 
+                                : user?.profilePhoto
+                            } 
                             alt="user profile" 
-                            onError={(e) => {
-                                e.target.onerror = null;
-                                e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(user?.fullName || '')}&background=random&color=fff`;
-                            }}
                         />
                     </div>
                 </div>
