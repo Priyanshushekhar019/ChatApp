@@ -38,6 +38,7 @@ export const register=async(req,res)=>{
             success: true
         });
     }catch(error){
+        console.log(error);
         return res.status(500).json({message:"Internal server error"});
     }
 }
