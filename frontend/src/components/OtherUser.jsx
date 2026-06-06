@@ -1,15 +1,17 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSelectedUser } from '../redux/userSlice';
+import { setSelectedUser, removeUnreadUser } from '../redux/userSlice';
 
 const OtherUser = ({ user }) => {
     const dispatch = useDispatch();
-    const { selectedUser } = useSelector(store => store.user);
+    const { selectedUser, unreadUsers } = useSelector(store => store.user);
     const { onlineUsers } = useSelector(store => store.socket);
     const isOnline = onlineUsers?.includes(user?._id);
+    const hasUnread = unreadUsers?.includes(user?._id);
 
     const selectedUserHandler = (user) => {
         dispatch(setSelectedUser(user));
+        dispatch(removeUnreadUser(user?._id));
     }
     return (
         <div>
@@ -26,8 +28,11 @@ const OtherUser = ({ user }) => {
                     </div>
                 </div>
                 <div className='flex flex-col flex-1'>
-                    <div className='flex justify-between gap-2'>
-                        <p>{user?.fullName}</p>
+                    <div className='flex justify-between items-center gap-2'>
+                        <p className={`${hasUnread && selectedUser?._id !== user?._id ? 'font-bold text-indigo-400' : ''}`}>{user?.fullName}</p>
+                        {hasUnread && selectedUser?._id !== user?._id && (
+                            <span className="w-2.5 h-2.5 rounded-full bg-indigo-500 animate-pulse shadow-sm shadow-indigo-500/50 mr-1"></span>
+                        )}
                     </div>
                 </div>
             </div>

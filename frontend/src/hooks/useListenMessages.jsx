@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setMessages } from "../redux/messageSlice";
-import { setOtherUsers } from "../redux/userSlice";
+import { setOtherUsers, addUnreadUser } from "../redux/userSlice";
 import toast from 'react-hot-toast';
 
 const useListenMessages = () => {
@@ -28,6 +28,7 @@ const useListenMessages = () => {
                         icon: '💬',
                     });
                 }
+                dispatch(addUnreadUser(newMessage.senderId));
             }
 
             // 3. Move the user who sent the message to the top of the sidebar list
