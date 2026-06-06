@@ -22,6 +22,21 @@ const userModel=new mongoose.Schema({
         type:String,
         enum:["male","female"],
         required:true
-    }
+    },
+    connections:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"User",
+        default:[]
+    }],
+    sentRequests:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"User",
+        default:[]
+    }],
+    receivedRequests:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"User",
+        default:[]
+    }]
 },{timestamps:true});
 export const User=mongoose.model("User",userModel);
